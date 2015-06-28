@@ -2,6 +2,7 @@
 import os
 import re
 import subprocess32 as sp
+import sys
 import unicodedata
 
 __author__ = 'sirpete@iki.fi'
@@ -278,6 +279,11 @@ def convert(song, src, dst):
 def main():
     src = u'/Volumes/movies/Musavideot'
     dst = u'/Volumes/music/convert3'
+    if len(sys.argv) > 1:
+        src = sys.argv[1].decode(sys.getfilesystemencoding())
+    if len(sys.argv) > 2:
+        dst = sys.argv[2].decode(sys.getfilesystemencoding())
+
     sm = SongMatcher()
 
     videofiles = sorted([f for f in listdir(src) if isfile(join(src, f)) and f.endswith(u'.mp4')])
