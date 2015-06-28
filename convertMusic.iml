@@ -3,7 +3,7 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$" />
-    <orderEntry type="jdk" jdkName="Python 2.6.9 virtualenv at ~/venv" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 2.6.9 virtualenv at ~/proj/convertMusic/venv" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
