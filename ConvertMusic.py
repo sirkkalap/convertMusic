@@ -24,7 +24,7 @@ class Song:
 class SongMatcher:
     def __init__(self):
         self.KnownArtists = {
-            u'AMORPHIS': u'AMORPHIS',
+            u'AMORPHIS': u'Amorphis',
             u'Abba': u'Abba',
             u'Accept': u'Accept',
             u'Advanced Art': u'Advanced Art',
@@ -35,7 +35,7 @@ class SongMatcher:
             u'Antique': u'Antique',
             u'Apocalyptica': u'Apocalyptica',
             u'Apocalyptica Ft Nina Hagen': u'Apocalyptica Ft Nina Hagen',
-            u'BATTLE BEAST': u'BATTLE BEAST',
+            u'BATTLE BEAST': u'Battle Beast',
             u'Bad Boys Blue': u'Bad Boys Blue',
             u'Bad English': u'Bad English',
             u'Basic Element': u'Basic Element',
@@ -51,8 +51,9 @@ class SongMatcher:
             u'Cher': u'Cher',
             u'City Lights': u'City Lights',
             u'Corona': u'Corona',
-            u'DEAD OR ALIVE': u'DEAD OR ALIVE',
-            u'Dead or Alive' u'DEF LEPPARD': u'Dead or Alive' u'DEF LEPPARD',
+            u'DEAD OR ALIVE': u'Dead or Alive',
+            u'Dead or Alive': u'Dead or Alive',
+            u'DEF LEPPARD': u'Def Leppard',
             u'DJ BoBo': u'DJ BoBo',
             u'Daryl Hall & John Oates': u'Daryl Hall & John Oates',
             u'Deep Purple': u'Deep Purple',
@@ -61,7 +62,7 @@ class SongMatcher:
             u'Don Johnson': u'Don Johnson',
             u'Donna Summer': u'Donna Summer',
             u'Doom Unit': u'Doom Unit',
-            u'EUROPE': u'EUROPE',
+            u'EUROPE': u'Europe',
             u'Eagles': u'Eagles',
             u'East 17': u'East 17',
             u'Edwyn Collins': u'Edwyn Collins',
@@ -77,7 +78,7 @@ class SongMatcher:
             u'Happoradio': u'Happoradio',
             u'Heart': u'Heart',
             u'Hollywood Beyond': u'Hollywood Beyond',
-            u'INFERNAL': u'INFERNAL',
+            u'INFERNAL': u'Infernal',
             u'Imagination': u'Imagination',
             u'Inxs': u'Inxs',
             u'Iron Maiden': u'Iron Maiden',
@@ -97,7 +98,7 @@ class SongMatcher:
             u'Lady GaGa': u'Lady Gaga',
             u'Lady Gaga': u'Lady Gaga',
             u'Larry Greene': u'Larry Greene',
-            u'Laura Branigan (Clip)': u'Laura Branigan (Clip)',
+            u'Laura Branigan (Clip)': u'Laura Branigan',
             u'Led Zepplin': u'Led Zepplin',
             u'Leila K': u'Leila K',
             u'Lestat': u'Lestat',
@@ -241,7 +242,6 @@ def ffmpeg(srcvideo, dstaudio):
         os.makedirs(dstdir)
 
     FFMPEG_BIN = os.getenv("FFMPEG_BIN", '/usr/local/bin/ffmpeg')
-
     command = [FFMPEG_BIN, '-y', '-i', srcvideo, dstaudio]
     child = sp.Popen(command, stdout=sp.PIPE, stderr=sp.PIPE, bufsize=10**8)
     streamdata = child.communicate()[1]
