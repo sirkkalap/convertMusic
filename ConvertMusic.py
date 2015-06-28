@@ -1,7 +1,7 @@
 # This Python file uses the following encoding: utf-8
 import os
 import re
-import subprocess32 as sp
+import subprocess as sp
 import sys
 import unicodedata
 
@@ -222,25 +222,17 @@ def get_filepaths(directory):
     return file_paths
 
 def antidarvin(filename):
-    if _platform == "linux" or _platform == "linux2":
-        # linux
-        return filename
-    elif _platform == "darwin":
+    if _platform == "darwin":
         # OS X
         return unicodedata.normalize(u'NFKC', filename)
-    elif _platform == "win32":
-        # Windows...
+    else:
         return filename
 
 def darvin(filename):
-    if _platform == "linux" or _platform == "linux2":
-        # linux
-        return filename
-    elif _platform == "darwin":
+    if _platform == "darwin":
         # OS X
         return unicodedata.normalize(u'NFKD', filename)
-    elif _platform == "win32":
-        # Windows...
+    else:
         return filename
 
 def ffmpeg(srcvideo, dstaudio):
@@ -248,7 +240,9 @@ def ffmpeg(srcvideo, dstaudio):
     if not os.path.exists(dstdir):
         os.makedirs(dstdir)
 
-    command = ['/usr/local/bin/ffmpeg', '-y', '-i', srcvideo, dstaudio]
+    FFMPEG_BIN = os.getenv("FFMPEG_BIN", '/usr/local/bin/ffmpeg')
+
+    command = [FFMPEG_BIN, '-y', '-i', srcvideo, dstaudio]
     child = sp.Popen(command, stdout=sp.PIPE, stderr=sp.PIPE, bufsize=10**8)
     streamdata = child.communicate()[1]
     rc = child.returncode
@@ -266,8 +260,6 @@ def idtag(dstaudio, artist):
 def saneutf(filename):
     result = ''.join([c for c in filename if not unicodedata.name(c, "###UNNAMED###") == "###UNNAMED###"])
     return result
-
-
 
 def convert(song, src, dst):
     srcvideo = join(src, song.filename.replace(u'.mp3', u'.mp4'))
