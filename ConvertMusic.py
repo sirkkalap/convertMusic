@@ -110,12 +110,12 @@ def ffmpeg(srcvideo, dstaudio, ffmpeg):
     rc = child.returncode
 
     if not rc == 0:
-        print rc, streamdata
+        print(rc, streamdata)
 
 
-def idtag(dstaudio, artist):
+def idtag(dstaudio, artist, album):
     audio = EasyID3(dstaudio)
-    audio['album'] = u'Tuupi'
+    audio['album'] = album
     audio['artist'] = artist
     audio.save()
 
@@ -125,12 +125,12 @@ def saneutf(filename):
     return result
 
 
-def convert(song, src, dst, ffmpegbin):
+def convert(song, src, dst, ffmpegbin, album):
     srcvideo = join(src, song.filename.replace(u'.mp3', u'.mp4'))
     dstaudio = join(dst, darvin(song.artist), darvin(song.name) + u'.mp3')
-    print dstaudio
+    print(dstaudio)
     ffmpeg(srcvideo, dstaudio, ffmpegbin)
-    idtag(dstaudio, song.artist)
+    idtag(dstaudio, song.artist, album)
 
 
 class FileNameAction(argparse.Action):
@@ -155,6 +155,9 @@ def main():
                         action=FileNameAction, default=u'/Volumes/music/convert')
     parser.add_argument('--ffmpeg', help='optional ffmpeg',
                         action=FileNameAction, default=u'/usr/local/bin/ffmpeg')
+    parser.add_argument('--album', help='optional album',
+                        action=FileNameAction, default=u'Tuubi')
+
     args = parser.parse_args()
 
     artistlist = join(args.dst, "artist-list.txt")
@@ -182,7 +185,7 @@ def main():
     diff = sorted(set(songsbyname.keys()) - set(oldsongsbyname.keys()))
 
     for songname in diff:
-        convert(songsbyname[songname], args.src, args.dst, args.ffmpeg)
+        convert(songsbyname[songname], args.src, args.dst, args.ffmpeg, args.album)
 
 
 if __name__ == "__main__":
