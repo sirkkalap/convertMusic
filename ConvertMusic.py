@@ -156,7 +156,7 @@ def main():
     parser.add_argument('--ffmpeg', help='optional ffmpeg',
                         action=FileNameAction, default=u'/usr/local/bin/ffmpeg')
     parser.add_argument('--album', help='optional album',
-                        action=FileNameAction, default=u'Tuubi')
+                        action=FileNameAction, default=u'Tuupi')
 
     args = parser.parse_args()
 
