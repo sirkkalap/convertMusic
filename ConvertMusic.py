@@ -52,7 +52,7 @@ def builduc(names):
 
 def sanitize(filename):
     assert isinstance(filename, unicode)
-    tubehash = re.search(r"^(.*)-[0-9A-Za-z_-]{11}\.mp[34]$", filename)
+    tubehash = re.search(r"^(.*)-[0-9A-Za-z_\.-]{11,16}\.mp[34]$", filename)
     if tubehash:
         f = titlecase(tubehash.group(1))
     else:
